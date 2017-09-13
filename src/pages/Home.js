@@ -13,60 +13,36 @@ import {
 	DeviceEventEmitter
 } from "react-native"
 import EventName from "../utils/TestEvent"
+import {StackNavigator, StackRouter} from "react-navigation"
+import TestPage from "./TestPage"
 
 
 export default class Kyogre extends Component {
 
 	static navigationOptions = {
-		title: "welcome!"
+		//title: "welcome!"
 	}
-	doSomething = () => {
-		//NativeModules.TestPower.doSomething()
-		//console.warn("this is ",EventName.TestIntent.goTo)
 
-		//console.warn("====",NativeModules.TestToast)
-	}
-	makeBroadCast = () => {
-		//console.warn("this is ",EventName.TestBroadCast)
-		EventName.TestBroadCast.makeBroadCast()
-	}
-	removeBroadCast = () => {
-		EventName.TestBroadCast.removeBroadCast()
-	}
-	sendBroad = () => {
-		//console.warn("this is",EventName.TestBroadSend)
-		EventName.TestBroadSend.broadSend()
-	}
+	testNotifyValue = "home!!"
 
 	constructor() {
 		super()
-		DeviceEventEmitter.addListener("testPower", () => {
-			console.warn("wtf")
+		this.listen("aaa", this, () => {
+			console.warn("===aaa,home!", this.testNotifyValue)
 		})
-		DeviceEventEmitter.addListener("TestBroad", (data) => {
-			console.warn("this is data", data.data)
-		})
-
-		//console.log("aaaa")
-		//this.testFunction().then(()=>{
-		//	console.log("444")
-		//})
-		//console.log("3333")
-
 
 	}
 
-	//testFunction = async () => {
-	//	console.log("====111!")
-	//	await new Promise((resolve, reject) => {
-	//		setTimeout(()=>{resolve()}, 1000)
-	//	})
-	//	console.log("===2222!")
-	//}
 
+
+	//static router = StackRouter({
+	//	"TestPage": {screen: TestPage}
+	//})
 
 	render() {
+
 		const {navigate} = this.props.navigation
+
 		return (
 			<View style={styles.container}>
 				<Text style={styles.welcome}>
@@ -79,11 +55,9 @@ export default class Kyogre extends Component {
 					Press Cmd+R to reload,{"\n"}
 					Cmd+D or shake for dev menu
 				</Text>
-				<Button title="go To othor place" onPress={() => navigate("TestPage", {title: 'aaaaa!!!'})}/>
-				<Button title="doSomething" onPress={this.doSomething}/>
-				<Button title="makeBroadCast" onPress={this.makeBroadCast}/>
-				<Button title="sendBroad" onPress={this.sendBroad}/>
-				<Button title="removeBroadCast" onPress={this.removeBroadCast}/>
+				<Button title="go To othor place" onPress={() => navigate("TestPage")}/>
+				<Button title="try notify" onPress={() => this.notify("aaa")}/>
+
 			</View>
 		)
 	}

@@ -7,28 +7,38 @@ import {
 	AppRegistry,
 	StyleSheet,
 	Text,
-	View
+	View,
+	Button
 } from "react-native"
 
 export default class TestPage extends Component {
 
-	static navigationOptions =
-		({navigation}) => {
-			return (
-				{
-					title: `this is some ${navigation.state.params.title}`
-				}
-			)
-		}
 
+	testNotifyValue = "TestPage"
+
+	testNotifyFunc = () => {
+		console.warn("===testpage", this.testNotifyValue)
+	}
+
+
+	constructor() {
+		super()
+		this.listen("aaa", this, this.testNotifyFunc)
+	}
+
+	componentWillUnmount() {
+		this.removeListen("aaa", this, this.testNotifyFunc)
+	}
 
 	render() {
-		const {params} = this.props.navigation.state;
+
 		return (
 			<View style={styles.container}>
 				<Text style={styles.welcome}>
-					this is testPage!!!and this is {params.title}
+					this is testPage!!!and this is
 				</Text>
+				<Button title="try notify" onPress={() => this.notify("aaa")}/>
+
 			</View>
 		)
 	}

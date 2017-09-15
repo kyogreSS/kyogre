@@ -72,9 +72,6 @@ export default class Kyogre extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		borderWidth: 1,
-		borderStyle: "solid",
-		borderColor: "black",
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#F5FCFF",

@@ -14,7 +14,8 @@ const styles = StyleSheet.create({
 	//conatiner
 	container: {
 		flex: 1,
-		justifyContent: "space-between",
+		justifyContent: "center",
+		alignItems: "center",
 		width: "100%",
 		borderWidth: 1,
 		borderStyle: "solid",
@@ -37,6 +38,8 @@ const styles = StyleSheet.create({
 	childrenView: {
 		flex: 11,
 		width: "100%",
+		alignItems: "center",
+		justifyContent: "center"
 	},
 	//导航条样式
 	nav: {
@@ -45,23 +48,36 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "space-around",
 		width: "100%",
+		borderStyle: "solid",
+		borderTopWidth: 1,
+		borderTopColor: "#e2e2e2"
 	},
 	//图标容器
 	navTouchable: {
 		flex: 1,
 		alignItems: "center",
 		justifyContent: "center",
+		padding: 5,
+
 	},
 	//图标
 	icon: {
-		width: getWidth(45),
-		height: getHeight(45)
+		width: getWidth(40),
+		height: getHeight(40)
 	},
 	text: {
-		fontSize: 12
+		fontSize: 11,
+		textAlign: "center",
+		lineHeight: getHeight(35),
+		height: getHeight(35),
+
+	},
+	selectedText: {
+		color: "red"
+	},
+	emptyView: {
+		textAlign: "center",
 	}
-
-
 })
 
 
@@ -87,7 +103,6 @@ export default class TabBar extends Component {
 		super(...props)
 		this.state = {
 			selected: 0,
-			number: 0
 		}
 	}
 
@@ -106,7 +121,7 @@ export default class TabBar extends Component {
 			<View style={[styles.container]}>
 				<View style={[styles.childrenView]}>
 					{
-						this.props.children.map((child, index) => {
+						this.props.children ? React.Children.map(this.props.children, (child, index) => {
 							return ( this.activity[index] &&
 								<View
 									key={"child" + index}
@@ -115,7 +130,7 @@ export default class TabBar extends Component {
 									{child}
 								</View>
 							)
-						})
+						}) : (<Text style={[styles.emptyView]}>no Children View！</Text>)
 					}
 
 				</View>
@@ -139,7 +154,7 @@ export default class TabBar extends Component {
 										style={[styles.icon]}
 									/>
 									<Text
-										style={[styles.text]}>{this.state.selected == index ? text : selectedText}</Text>
+										style={[styles.text, this.state.selected == index ? styles.selectedText : null]}>{this.state.selected == index ? text : selectedText}</Text>
 								</TouchableOpacity>
 							)
 						})

@@ -4,7 +4,6 @@
 
 import React, {Component} from "react"
 import GlobalFunc from "./configs/global/GlobalFunction"
-import EventBus from "./utils/EventBus"
 import NavigationHandler from "./configs/navigationHandler/NavigationHandler"
 
 //全局函数
@@ -21,3 +20,4 @@ if (NavigationHandler) {
 //全局屏幕设置
 global.DefaultWidth = 750
 global.DefaultHeight = 1334
+

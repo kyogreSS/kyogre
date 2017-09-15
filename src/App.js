@@ -29,7 +29,6 @@ const styles = {
 
 class App extends Component {
 
-
 	render() {
 		return (
 			<View style={styles.root}>
@@ -38,9 +37,7 @@ class App extends Component {
 				/>
 				<Kyogre
 					ref={navigatorRef => {
-						this.navigator = navigatorRef
 						this.nav.setNavigation(navigatorRef)
-						console.warn("navigation", navigatorRef)
 					}}
 					screenProps={{}}
 				/>

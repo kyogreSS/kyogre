@@ -11,6 +11,7 @@ import {
 	Button
 } from "react-native"
 
+
 export default class TestPage extends Component {
 
 

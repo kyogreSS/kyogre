@@ -62,7 +62,7 @@ class EventBus {
 	}
 
 	removeListen(key = undefined, bind = undefined, func = undefined) {
-		console.warn("aaa")
+		
 		if (key == undefined) {
 			EventBus.eventBus.clear()
 			EventBus.eventBusListenOnce.clear()

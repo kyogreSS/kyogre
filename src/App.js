@@ -20,6 +20,7 @@ const Kyogre = StackNavigator(
 	Router, componentInit
 )
 
+
 const styles = {
 	root: {
 		flex: 1
@@ -27,6 +28,8 @@ const styles = {
 }
 
 class App extends Component {
+
+
 	render() {
 		return (
 			<View style={styles.root}>
@@ -34,8 +37,10 @@ class App extends Component {
 					barStyle="dark-content"//字体颜色
 				/>
 				<Kyogre
-					ref={nav => {
-						this.navigator = nav
+					ref={navigatorRef => {
+						this.navigator = navigatorRef
+						this.nav.setNavigation(navigatorRef)
+						console.warn("navigation", navigatorRef)
 					}}
 					screenProps={{}}
 				/>

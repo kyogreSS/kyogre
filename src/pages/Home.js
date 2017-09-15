@@ -12,51 +12,56 @@ import {
 	NativeModules,
 	DeviceEventEmitter
 } from "react-native"
-import EventName from "../utils/TestEvent"
-import {StackNavigator, StackRouter} from "react-navigation"
 import TestPage from "./TestPage"
+import Front from "./Front"
 
+const icon = [require("../assets/home.png"), require("../assets/set.png")]
+const selectedIcon = [require("../assets/home-selected.png"), require("../assets/set-selected.png")]
+
+import TabBar from "./TabBar"
 
 export default class Kyogre extends Component {
 
-	static navigationOptions = {
-		//title: "welcome!"
-	}
-
-	testNotifyValue = "home!!"
-
 	constructor() {
 		super()
-		this.listen("aaa", this, () => {
-			console.warn("===aaa,home!", this.testNotifyValue)
-		})
-
 	}
 
-
-
-	//static router = StackRouter({
-	//	"TestPage": {screen: TestPage}
-	//})
+	stateChanged(index) {
+		console.log(index)
+	}
 
 	render() {
-
-		const {navigate} = this.props.navigation
-
 		return (
 			<View style={styles.container}>
-				<Text style={styles.welcome}>
-					Welcome to React Native!
-				</Text>
-				<Text style={styles.instructions}>
-					To get started, edit index.ios.js
-				</Text>
-				<Text style={styles.instructions}>
-					Press Cmd+R to reload,{"\n"}
-					Cmd+D or shake for dev menu
-				</Text>
-				<Button title="go To othor place" onPress={() => navigate("TestPage")}/>
-				<Button title="try notify" onPress={() => this.notify("aaa")}/>
+				<TabBar
+					someValue="123"
+					stateChanged={this.stateChanged}
+				>
+					<TabBar.Item
+						icon={icon[0]}
+						selectedIcon={selectedIcon[0]}
+						text="首页"
+
+					>
+						<Front/>
+					</TabBar.Item>
+					<TabBar.Item
+						icon={icon[1]}
+						selectedIcon={selectedIcon[1]}
+						text="设置"
+					>
+						<TestPage/>
+					</TabBar.Item>
+					<TabBar.Item
+						icon={icon[1]}
+						selectedIcon={selectedIcon[0]}
+						text="图标"
+					>
+						<Text>wthsa</Text>
+					</TabBar.Item>
+
+				</TabBar>
+
 
 			</View>
 		)
@@ -67,18 +72,11 @@ export default class Kyogre extends Component {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+		borderWidth: 1,
+		borderStyle: "solid",
+		borderColor: "black",
 		justifyContent: "center",
 		alignItems: "center",
 		backgroundColor: "#F5FCFF",
-	},
-	welcome: {
-		fontSize: 20,
-		textAlign: "center",
-		margin: 10,
-	},
-	instructions: {
-		textAlign: "center",
-		color: "#333333",
-		marginBottom: 5,
-	},
+	}
 })

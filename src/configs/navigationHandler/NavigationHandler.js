@@ -1,11 +1,49 @@
 /**
  * Created by hjx on 2017/8/22.
  */
-const NavigationConfig = ({navigation}) => {
-	console.log(navigation)
 
+export default class NavigationHandler {
+
+	static _navigationRef = null
+
+	setNavigation(nav) {
+		if (!nav._navigation) return
+		NavigationHandler._navigationRef = nav._navigation
+	}
+
+	href(routeName,params,action) {
+		if (!NavigationHandler._navigationRef) return () => {
+
+		}
+		return NavigationHandler._navigationRef.navigate(routeName,params,action)
+
+	}
+
+	goBack(key) {
+		if (!NavigationHandler._navigationRef) return () => {
+
+		}
+		return NavigationHandler._navigationRef.goBack(key)
+	}
+
+	dispatch(action) {
+		if (!NavigationHandler._navigationRef) return () => {
+
+		}
+		return NavigationHandler._navigationRef.dispatch(action)
+	}
+
+	setParams(...params) {
+		if (!NavigationHandler._navigationRef) return () => {
+
+		}
+		return NavigationHandler._navigationRef.setParams(...params)
+	}
+
+	get State() {
+		if (!NavigationHandler._navigationRef) return {}
+		return NavigationHandler._navigationRef.state
+	}
 
 
 }
-
-export default NavigationConfig

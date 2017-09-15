@@ -21,17 +21,17 @@ const styles = StyleSheet.create({
 		borderColor: "green",
 	},
 	show: {
-		position:"absolute",
+		position: "absolute",
 		flex: 1,
-		width:"100%",
-		height:"100%",
+		width: "100%",
+		height: "100%",
 	},
 	hidden: {
-		position:"absolute",
-		left:-2*DefaultWidth,
-		width:"-100%",
-		height:"-100%",
-		opacity:0,
+		position: "absolute",
+		left: -2 * DefaultWidth,
+		width: "-100%",
+		height: "-100%",
+		opacity: 0,
 	},
 	//子视图conatiner样式
 	childrenView: {
@@ -74,15 +74,13 @@ export default class TabBar extends Component {
 		selectedIcon: PropTypes.any,
 		text: PropTypes.string,
 		selectedText: PropTypes.string,
+		stateChanged: PropTypes.func
 	}
 	static defaultProps = {
 		text: "图标",
 	}
 
 	activity = [true]
-
-	childrenView = []
-	rendered = false
 
 
 	constructor(...props) {
@@ -93,14 +91,11 @@ export default class TabBar extends Component {
 		}
 	}
 
-	componentWillMount() {
-		//this.buildView()
-	}
-
 
 	selectChange(index) {
 		if (this.state.selected == index) return
 		this.setState({selected: index})
+		this.props.stateChanged && this.props.stateChanged(index)
 		this.activity[index] = true
 	}
 

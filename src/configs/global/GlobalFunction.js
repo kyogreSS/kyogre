@@ -8,9 +8,6 @@ const globalFunc = {}
 
 globalFunc.notify = function (key, ...args) {
 	EventBus.instance.notify(key, ...args)
-	//console.warn("===aaa")
-	//console.warn(EventBus.instance)
-
 }
 
 globalFunc.listen = function (key, bind, func) {
@@ -19,5 +16,7 @@ globalFunc.listen = function (key, bind, func) {
 globalFunc.removeListen=function(key,bind,func){
 	EventBus.instance.removeListen(key,bind,func)
 }
+globalFunc.href = function(root){
 
+}
 export default globalFunc

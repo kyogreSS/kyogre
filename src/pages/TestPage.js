@@ -31,14 +31,14 @@ export default class TestPage extends Component {
 	}
 
 	render() {
-
 		return (
 			<View style={styles.container}>
 				<Text style={styles.welcome}>
 					this is testPage!!!and this is
 				</Text>
 				<Button title="try notify" onPress={() => this.notify("aaa")}/>
-
+				<Button title="goOther" onPress={() => this.nav.href("Front")}/>
+				<Button title="and go other" onPress={() => this.nav.href("Front")}/>
 			</View>
 		)
 	}

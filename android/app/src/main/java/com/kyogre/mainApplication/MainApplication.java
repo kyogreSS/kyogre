@@ -5,6 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.Toast;
 
+//引入热更新
+import cn.reactnative.modules.update.UpdateContext;
+import cn.reactnative.modules.update.UpdatePackage;
+
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -13,6 +17,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.kyogre.BuildConfig;
 import com.kyogre.TestRegister;
+
 
 //引入有氧支付相关
 import com.jinfu.pay.sdk.api.JFPaySdkImpl;
@@ -30,7 +35,7 @@ public class MainApplication extends Application implements ReactApplication {
     private static Context mContext;
 
 
-//    这个是RN的部分
+    //    这个是RN的部分
     private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
         @Override
         public boolean getUseDeveloperSupport() {
@@ -41,9 +46,17 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-                    new TestRegister()
+                    new TestRegister(),
+                    new UpdatePackage()  //引入热更新
             );
         }
+
+        //        热更新
+        @Override
+        protected String getJSBundleFile() {
+            return UpdateContext.getBundleUrl(MainApplication.this);
+        }
+
     };
 
     public static Context getApplication() {
@@ -56,7 +69,8 @@ public class MainApplication extends Application implements ReactApplication {
         return mReactNativeHost;
     }
 
-//    这个是创建的时候执行的
+
+    //    这个是创建的时候执行的
     @Override
     public void onCreate() {
 
@@ -68,8 +82,10 @@ public class MainApplication extends Application implements ReactApplication {
         config();
 
     }
-//    初始化函数均写在这里
-    public void config(){
+
+
+    //    初始化函数均写在这里
+    public void config() {
 
         //金服SDK初始化,初始化需要填写商家在金服的商户号，商户号由金服客服提供
         JFPaySdkImpl.getInstance().jfPayInit(this, new Callback() {

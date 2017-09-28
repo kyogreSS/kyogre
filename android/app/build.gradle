@@ -133,6 +133,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-update')
     compile fileTree(include: ['*.jar'], dir: 'libs')
     // From node_modules
     compile files('libs/jinfupaysdk_v1.3.3.jar')

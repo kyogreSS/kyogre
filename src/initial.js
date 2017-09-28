@@ -5,6 +5,8 @@
 import React, {Component} from "react"
 import GlobalFunc from "./configs/global/GlobalFunction"
 import NavigationHandler from "./configs/navigationHandler/NavigationHandler"
+import NetworkConfig from "./configs/network/NetworkConfig"
+import FetchMethod from "./configs/network/FetchMethod"
 
 //全局函数
 if (GlobalFunc) {
@@ -12,10 +14,10 @@ if (GlobalFunc) {
 		Component.prototype[funcName] = GlobalFunc[funcName]
 	}
 }
-//全局路由
-if (NavigationHandler) {
-	Component.prototype.nav = new NavigationHandler()
-}
+
+//设置网络请求
+FetchMethod.setConfig(NetworkConfig)
+
 
 //全局屏幕设置
 global.DefaultWidth = 750

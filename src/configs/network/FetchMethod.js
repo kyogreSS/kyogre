@@ -34,9 +34,9 @@ export default class FetchMethod {
 	static baseUrl = "http://192.168.1.233"
 	static port = "3000"
 	static options = {
-		headers:{
-			"Accept":"application/json",
-			"Content-Type":"application/json"
+		headers: {
+			"Accept": "application/json",
+			"Content-Type": "application/json"
 		}
 	}
 
@@ -97,7 +97,7 @@ export default class FetchMethod {
 		}
 
 		let options = {}
-		Object.assign(options,FetchMethod.options)
+		Object.assign(options, FetchMethod.options)
 
 		let url = getUrl(FetchMethod.baseUrl + ":" + FetchMethod.port, config.url)
 
@@ -113,10 +113,22 @@ export default class FetchMethod {
 		fetch(url, options)
 			.then((res) => {
 				console.log("===http responsed!", key)
-				return res.json()
+				if (res.status === "404") {
+					console.log("404 not found!")
+					return
+				}
+				if (res.status === "") {
+
+				}
+				return res.text()
 			})
 			.then((data) => {
 				console.log("===here is data", key, data)
+				try {
+					data = JSON.parse(data)
+				} catch (e) {
+					console.log("The data may not be JSON type")
+				}
 				callBack && callBack(data)
 			})
 			.catch((error) => {
@@ -124,5 +136,4 @@ export default class FetchMethod {
 				errorHandler && errorHandler()
 			})
 	}
-
 }

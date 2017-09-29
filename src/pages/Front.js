@@ -34,7 +34,7 @@ export default class Front extends Component {
 					this.request("TEST", {}, this.test1)
 				}}/>
 				<Button title="try fetch 2" onPress={() => {
-					this.request("USERS", this.test2.bind(this))
+					this.request("USERS", {aaa:"123"},this.test2.bind(this))
 				}}></Button>
 			</View>
 		)

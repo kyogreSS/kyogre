@@ -33,7 +33,12 @@ export default class FetchMethod {
 	static config = {}
 	static baseUrl = "http://192.168.1.233"
 	static port = "3000"
-	static options = {}
+	static options = {
+		headers:{
+			"Accept":"application/json",
+			"Content-Type":"application/json"
+		}
+	}
 
 	static setConfig(config) {
 		FetchMethod.config = config
@@ -91,14 +96,16 @@ export default class FetchMethod {
 			return
 		}
 
-		let options = FetchMethod.options
+		let options = {}
+		Object.assign(options,FetchMethod.options)
 
 		let url = getUrl(FetchMethod.baseUrl + ":" + FetchMethod.port, config.url)
 
 		Object.assign(options, {method: config.method})
 
+
 		if (config.method === "POST") {
-			Object.assign(options, {data: data})
+			Object.assign(options, {body: JSON.stringify(data)})
 		}
 
 		console.log("====dohttpsend", url, options)

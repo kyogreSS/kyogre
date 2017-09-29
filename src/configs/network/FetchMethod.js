@@ -116,7 +116,7 @@ export default class FetchMethod {
 				return res.json()
 			})
 			.then((data) => {
-				console.log("===http responsed data", key, data)
+				console.log("===here is data", key, data)
 				callBack && callBack(data)
 			})
 			.catch((error) => {

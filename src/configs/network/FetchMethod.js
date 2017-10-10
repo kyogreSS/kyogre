@@ -65,6 +65,9 @@ export default class FetchMethod {
 	 * timeOver
 	 * timeOverHandler
 	 * */
+
+
+
 	static doHttpSend = (key, ...params) => {
 		let data = {}
 		let callBack

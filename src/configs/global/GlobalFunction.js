@@ -4,6 +4,7 @@
 import EventBus from "../../utils/EventBus"
 import NavigationHandler from "../../configs/navigationHandler/NavigationHandler"
 import FetchMethod from "../../configs/network/FetchMethod"
+import WebSocketMethod from "../../configs/network/WebSocketMethod"
 
 const globalFunc = {}
 
@@ -29,6 +30,7 @@ globalFunc.removeListen = function (key, bind, func) {
  */
 globalFunc.nav = new NavigationHandler()
 
+
 //globalFunc.setNavigation = function (nav) {
 //	NavigationHandler.instance.setNavigation(nav)
 //}
@@ -47,4 +49,9 @@ globalFunc.request = function (key, data, callBack, errorHandler, method, timeOv
 }
 //----
 
+//socket实例
+globalFunc.socketInstance = () => {
+	return WebSocketMethod.SocketInstance
+}
+//----
 export default globalFunc

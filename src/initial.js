@@ -7,7 +7,7 @@ import GlobalFunc from "./configs/global/GlobalFunction"
 import NavigationHandler from "./configs/navigationHandler/NavigationHandler"
 import NetworkConfig from "./configs/network/NetworkConfig"
 import FetchMethod from "./configs/network/FetchMethod"
-
+import WebSocketMethod from "./configs/network/WebSocketMethod"
 //全局函数
 if (GlobalFunc) {
 	for (let funcName of Object.keys(GlobalFunc)) {
@@ -17,7 +17,7 @@ if (GlobalFunc) {
 
 //设置网络请求
 FetchMethod.setConfig(NetworkConfig)
-
+WebSocketMethod.buildSocket()
 
 //全局屏幕设置
 global.DefaultWidth = 750

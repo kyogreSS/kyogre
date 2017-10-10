@@ -24,7 +24,6 @@ export default class WebSocketMethed {
 		console.log("socket build", WebSocketMethed.SocketInstance)
 		Socket.onopen = () => {
 			console.log("Socket sending message!")
-			Socket.send("wtf")
 			Socket.send("testMessage")
 		}
 		Socket.onmessage = (evt) => {

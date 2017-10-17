@@ -6,20 +6,15 @@ import {View, TouchableOpacity, Image, Text, StyleSheet, Dimensions, Button} fro
 import PropTypes from "prop-types"
 import TabBarItem from "./TabBarItem"
 
-let getWidth = (px) => Dimensions.get("window").width / DefaultWidth * px;
-let getHeight = (px) => Dimensions.get("window").height / DefaultHeight * px;
-
 
 const styles = StyleSheet.create({
 	//conatiner
 	container: {
-		flex: 1,
+		//flex: 1,
+		height: getHeight(DefaultHeight),
 		justifyContent: "center",
 		alignItems: "center",
 		width: "100%",
-		borderWidth: 1,
-		borderStyle: "solid",
-		borderColor: "green",
 	},
 	show: {
 		position: "absolute",
@@ -30,12 +25,13 @@ const styles = StyleSheet.create({
 	hidden: {
 		position: "absolute",
 		left: -2 * DefaultWidth,
-		width: "-100%",
-		height: "-100%",
+		width: "100%",
+		height: "100%",
 		opacity: 0,
 	},
 	//子视图conatiner样式
 	childrenView: {
+		//height:getHeight(1222),
 		flex: 11,
 		width: "100%",
 		alignItems: "center",
@@ -43,6 +39,7 @@ const styles = StyleSheet.create({
 	},
 	//导航条样式
 	nav: {
+		//height:getHeight(112),
 		flex: 1,
 		flexDirection: "row",
 		alignItems: "center",
@@ -50,7 +47,10 @@ const styles = StyleSheet.create({
 		width: "100%",
 		borderStyle: "solid",
 		borderTopWidth: 1,
-		borderTopColor: "#e2e2e2"
+		borderTopColor: "#e2e2e2",
+		//borderWidth: 2,
+		//borderStyle: "solid",
+		//borderColor: "green",
 	},
 	//图标容器
 	navTouchable: {

@@ -14,6 +14,8 @@ import {
 } from "react-native"
 import TestPage from "./TestPage"
 import Front from "./Front"
+import Chat from "./Chat"
+
 
 const icon = [require("../assets/home.png"), require("../assets/set.png")]
 const selectedIcon = [require("../assets/home-selected.png"), require("../assets/set-selected.png")]
@@ -57,7 +59,7 @@ export default class Kyogre extends Component {
 						selectedIcon={selectedIcon[0]}
 						text="图标"
 					>
-						<Text>wthsa</Text>
+						<Chat/>
 					</TabBar.Item>
 
 				</TabBar>

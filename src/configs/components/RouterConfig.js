@@ -4,6 +4,8 @@
 import Home from  "../../pages/Home"
 import TestPage from "../../pages/TestPage"
 import Front from "../../pages/Front"
+import Login from "../../pages/Login"
+import Chat from "../../pages/Chat"
 const Router = {}
 
 
@@ -16,12 +18,22 @@ Router.Home = {
 
 Router.TestPage = {
 	screen: TestPage,
-	navigationOptions: {
-
-	}
+	navigationOptions: {}
 }
 Router.Front = {
 	screen: Front
+}
+Router.Login = {
+	screen: Login,
+	navigationOptions: {
+		header: null
+	}
+}
+Router.Chat = {
+	screen: Chat,
+	navigationOptions: {
+		header: null
+	}
 }
 
 

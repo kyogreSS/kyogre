@@ -7,7 +7,7 @@ import CardStackStyleInterpolator from "react-navigation/src/views/CardStackStyl
 
 const componentInit = {
 	headerMode: "screen",
-	initialRouteName: "Home",
+	initialRouteName: "Login",
 	navigationOptions: {
 		//header: null
 	},

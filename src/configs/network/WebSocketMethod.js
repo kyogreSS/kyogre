@@ -2,6 +2,9 @@
  * Created by hjx on 2017/9/30.
  * webSocket模块，对应node后端ws模块
  */
+
+import EventBus from "../../utils/EventBus"
+
 export default class WebSocketMethed {
 	constructor() {
 
@@ -23,11 +26,19 @@ export default class WebSocketMethed {
 		var Socket = WebSocketMethed.SocketInstance
 		console.log("socket build", WebSocketMethed.SocketInstance)
 		Socket.onopen = () => {
-			console.log("Socket sending message!")
+			console.log("Socket connected!")
 			Socket.send("testMessage")
 		}
 		Socket.onmessage = (evt) => {
-			let data = evt.data
+			let data = null
+			try {
+				data = JSON.parse(evt.data)
+			} catch (e) {
+				data = evt.data
+			}
+			if (typeof data === "object" && data.key && data.data) {
+				EventBus.instance.notify(data.key, data.data)
+			}
 			console.log("Sokcet received something!", data)
 		}
 		Socket.onClose = () => {

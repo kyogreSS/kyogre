@@ -3,8 +3,9 @@
  */
 const store = {}
 
-store.name = null
+store.name = ""
 store.time = null
 store.onlineNumber = null
+store.uuid = null
 
 export default store

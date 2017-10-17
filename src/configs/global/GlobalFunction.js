@@ -53,5 +53,30 @@ globalFunc.request = function (key, data, callBack, errorHandler, method, timeOv
 globalFunc.socketInstance = () => {
 	return WebSocketMethod.SocketInstance
 }
+//发送方法
+globalFunc.socketSend = (key, data) => {
+	let obj = {}
+	obj.key = key
+	obj.data = data
+	if (WebSocketMethod.SocketInstance.readyState === 1) {
+		WebSocketMethod.SocketInstance.send(JSON.stringify(obj))
+		return true
+	}
+	return false
+}
+globalFunc.reBuildSocket = () => {
+	WebSocketMethod.buildSocket()
+}
 //----
+
+//uuid
+globalFunc.createUUID = function () {
+	function S4() {
+		return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+	}
+
+	return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4())
+}
+//----
+
 export default globalFunc

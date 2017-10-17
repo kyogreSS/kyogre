@@ -2,19 +2,20 @@
  * Created by hjx on 2017/9/14.
  */
 import React, {Component} from "react"
-import {View, Button, Dimensions} from "react-native"
+import {View, Button, Dimensions, Text} from "react-native"
 import {NavigationActions} from "react-navigation"
 import WebSocketMethod from "../configs/network/WebSocketMethod"
+import {observer} from "mobx-react"
+import {observable} from "mobx"
 
 
-let getWidth = (px) => Dimensions.get("window").width / DefaultWidth * px
-let getHeight = (px) => Dimensions.get("window").height / DefaultHeight * px
 
-
+@observer
 export default class Front extends Component {
 	constructor(...props) {
 		super(...props)
 	}
+
 
 	data1 = "123"
 	data2 = "456"
@@ -36,15 +37,16 @@ export default class Front extends Component {
 					this.request("TEST", {}, this.test1)
 				}}/>
 				<Button title="try fetch 2" onPress={() => {
-					this.request("USERS", {aaa:"123"},this.test2.bind(this))
+					this.request("USERS", {aaa: "123"}, this.test2.bind(this))
 				}}></Button>
 				<Button title="send socket message"
-					onPress={()=>{
-						if (this.socketInstance().readyState ===1){
-							this.socketInstance().send("aaaaa")
-						}
-					}}
+				        onPress={() => {
+					        if (this.socketInstance().readyState === 1) {
+						        this.socketInstance().send("aaaaa")
+					        }
+				        }}
 				></Button>
+				<Text>123+{this.store.name}</Text>
 			</View>
 		)
 	}

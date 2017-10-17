@@ -1,4 +1,4 @@
-package com.kyogre.mainApplication;
+package com.kyogre;
 
 import android.app.Application;
 import android.content.Context;
@@ -9,22 +9,19 @@ import android.widget.Toast;
 import cn.reactnative.modules.update.UpdateContext;
 import cn.reactnative.modules.update.UpdatePackage;
 
+//引入react-native-extra-dimensions-android获取屏幕高度组件
+import ca.jaysoo.extradimensions.ExtraDimensionsPackage;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
-import com.kyogre.BuildConfig;
-import com.kyogre.TestRegister;
 
 
 //引入有氧支付相关
 import com.jinfu.pay.sdk.api.JFPaySdkImpl;
-import com.jinfu.pay.sdk.app.common.contants.PayVariety;
-import com.jinfu.pay.sdk.app.entity.PayResult;
 import com.jinfu.pay.sdk.app.listener.Callback;
-import com.jinfu.pay.sdk.app.listener.PaymentCallback;
 
 
 import java.util.Arrays;
@@ -47,7 +44,8 @@ public class MainApplication extends Application implements ReactApplication {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
                     new TestRegister(),
-                    new UpdatePackage()  //引入热更新
+                    new UpdatePackage(),  //引入热更新
+                    new ExtraDimensionsPackage()
             );
         }
 
